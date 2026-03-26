@@ -11,62 +11,83 @@ struct student
         float cgpa;
     };
 
-void introMessage();
-void addStudent(student[], int&);
+void introMessage(char&);
+void addStudent(student[], int&, char&);
 void displayStudent(student[], int);
 void searchStudent(student[], int);
 void updateStudent(student[], int);
 void deleteStudent(student[], int&);
 void exitProgram();
 
-int main ()
+int main()
 {
     student studNumber[100];
     int index = 0;
+    char start, choose;
 
-    introMessage();
-    addStudent(studNumber, index);
+    introMessage(start);
+    
+    do
+    {
+    	addStudent(studNumber, index, choose);
+    	
+    	cout << "Do you want to add another student ?";
+        cin >> choose;
+        choose = toupper(choose);
+        cin.ignore();
+        
+	}while(choose == 'Y');
+  	
     displayStudent(studNumber, index);
     searchStudent(studNumber, index);
     updateStudent(studNumber, index);
     deleteStudent(studNumber, index);
     exitProgram();
+    
+    return 0;
 
 }
 
-void introMessage()
+void introMessage(char& start)
 {
-    cout << "Welcome to the Student Management System!" << endl;
+    cout << " \tWELCOME TO THE STUDENT MANAGEMENT SYSTEM!" << endl;
     cout << "_________________________________________________________________ "<< endl;
     cout << "This system allows you to manage student information efficiently." << endl;
     cout << "You can add, view, and update student records with ease." << endl;
-    cout << "Let's get started!" << endl;
     cout << "_________________________________________________________________ "<< endl;
+    cout << "\nDo you want to start the program?";
+    cin >>start;
+    start = toupper(start);
+    cin.ignore();
 
     return;
 }
 
-void addStudent(student studNumber[], int& index)
+void addStudent(student studNumber[], int& index, char& choose)
 {
+	
     if (index >= 100)
     {
         cout << "\nMaximum number of students reached. Cannot add more students." << endl;
         return;
     }
 
-    cout << "\nEnter student name: ";
-    getline(cin, studNumber[index].name);
+        cout << "\nEnter student name: ";
+        getline(cin, studNumber[index].name);
 
-    cout << "Enter student course: ";
-    getline(cin, studNumber[index].course);
+        cout << "Enter student course: ";
+        getline(cin, studNumber[index].course);
 
-    cout << "Enter student ID number: ";
-    cin >> studNumber[index].IDnum;
+        cout << "Enter student ID number: ";
+        cin >> studNumber[index].IDnum;
 
-    cout << "Enter student CGPA: ";
-    cin >> studNumber[index].cgpa;
+        cout << "Enter student CGPA: ";
+        cin >> studNumber[index].cgpa;
+        cin.ignore();
 
-    cout << "Student added successfully!" << endl;
+        cout << "\nStudent added successfully!" << endl;
+        
+        index++;
 
     return;
 }
@@ -188,6 +209,5 @@ void deleteStudent(student studNumber[], int& index)
 
 void exitProgram()
 {
-    cout << "\nThank you for using the Student Management System. Goodbye!" << endl;
+        cout << "\nThank you for using the Student Management System. Goodbye!" << endl;
 }
-
