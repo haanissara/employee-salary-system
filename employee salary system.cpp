@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
-#include <ctype.h>//the library is used because in the programmed we used toupper
-#include <iomanip>//the library is used beacuse we implement setprecision
+#include <ctype.h>
+#include <iomanip>
 
 using namespace std;
 //functions declaration @ functions prototype
@@ -373,7 +373,7 @@ void employeeSlip(string& name,int& IDnumber,string& department,string& position
 	cout << "=========================================="<<endl;
 	cout << "NETT PAYMENT (RM)         : "<<nettPayment<<endl;
 	cout << "=========================================="<<endl;
-	cout << "\tTHANKYOU FOR GIVING YOUR ENERGY "<<endl;
+	cout << "\tTHANKYOU FOR DONATE YOUR ENERGY AND HARDWORKING "<<endl;
 	
 	return;
 }

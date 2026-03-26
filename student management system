@@ -1,0 +1,193 @@
+#include <iostream>
+#include <iomanip>
+#include <string>
+using namespace std;
+
+struct student
+    {
+        string name;
+        string course;
+        int IDnum;
+        float cgpa;
+    };
+
+void introMessage();
+void addStudent(student[], int&);
+void displayStudent(student[], int);
+void searchStudent(student[], int);
+void updateStudent(student[], int);
+void deleteStudent(student[], int&);
+void exitProgram();
+
+int main ()
+{
+    student studNumber[100];
+    int index = 0;
+
+    introMessage();
+    addStudent(studNumber, index);
+    displayStudent(studNumber, index);
+    searchStudent(studNumber, index);
+    updateStudent(studNumber, index);
+    deleteStudent(studNumber, index);
+    exitProgram();
+
+}
+
+void introMessage()
+{
+    cout << "Welcome to the Student Management System!" << endl;
+    cout << "_________________________________________________________________ "<< endl;
+    cout << "This system allows you to manage student information efficiently." << endl;
+    cout << "You can add, view, and update student records with ease." << endl;
+    cout << "Let's get started!" << endl;
+    cout << "_________________________________________________________________ "<< endl;
+
+    return;
+}
+
+void addStudent(student studNumber[], int& index)
+{
+    if (index >= 100)
+    {
+        cout << "\nMaximum number of students reached. Cannot add more students." << endl;
+        return;
+    }
+
+    cout << "\nEnter student name: ";
+    getline(cin, studNumber[index].name);
+
+    cout << "Enter student course: ";
+    getline(cin, studNumber[index].course);
+
+    cout << "Enter student ID number: ";
+    cin >> studNumber[index].IDnum;
+
+    cout << "Enter student CGPA: ";
+    cin >> studNumber[index].cgpa;
+
+    cout << "Student added successfully!" << endl;
+
+    return;
+}
+
+void displayStudent(student studNumber[], int index)
+{
+    int i = 0;
+
+    cout << "\nStudent Information:" << endl;
+    cout << "_________________________________________________________________ "<< endl;
+    for (int i = 0; i < index; i++)
+    {
+        cout << "Name: " << studNumber[i].name << endl;
+        cout << "Course: " << studNumber[i].course << endl;
+        cout << "ID Number: " << studNumber[i].IDnum << endl;
+        cout << "CGPA: " << fixed << setprecision(2) << studNumber[i].cgpa << endl;
+        cout << "_________________________________________________________________ "<< endl;
+    }
+    return;
+}
+
+void searchStudent(student studNumber[], int index)
+{
+    int searchID;
+    bool found = false;
+
+    cout << "\nEnter student ID number to search: ";
+    cin >> searchID;
+
+    for (int i = 0; i < index; i++)
+    {
+        if (studNumber[i].IDnum == searchID)
+        {
+            cout << "Student found!" << endl;
+            cout << "Name: " << studNumber[i].name << endl;
+            cout << "Course: " << studNumber[i].course << endl;
+            cout << "ID Number: " << studNumber[i].IDnum << endl;
+            cout << "CGPA: " << fixed << setprecision(2) << studNumber[i].cgpa << endl;
+            found = true;
+            break;
+        }
+    }
+
+    if (!found)
+    {
+        cout << "Student with ID number " << searchID << " not found." << endl;
+    }
+    return;
+}
+ 
+void updateStudent(student studNumber[], int index)
+{
+    int updateID;
+    bool found = false;
+
+    cout << "\nEnter student ID number to update: ";
+    cin >> updateID;
+
+    for (int i = 0; i < index; i++)
+    {
+        if (studNumber[i].IDnum == updateID)
+        {
+            cout << "Student found! Enter new details." << endl;
+            cout <<"______________________________________" << endl;
+            cout << "Enter new name: ";
+            cin.ignore();
+            getline(cin, studNumber[i].name);
+
+            cout << "Enter new course: ";
+            getline(cin, studNumber[i].course);
+
+            cout << "Enter new CGPA: ";
+            cin >> studNumber[i].cgpa;
+
+            cout << "Student information updated successfully!" << endl;
+            cout <<"______________________________________" << endl;
+            found = true;
+            break;
+        }
+    }
+
+    if (!found)
+    {
+        cout << "Student with ID number " << updateID << " not found." << endl;
+    }
+    return;
+}
+
+void deleteStudent(student studNumber[], int& index)
+{
+    int deleteID;
+    bool found = false;
+
+    cout << "\nEnter student ID number to delete: ";
+    cin >> deleteID;
+
+    for (int i = 0; i < index; i++)
+    {
+        if (studNumber[i].IDnum == deleteID)
+        {
+            for (int j = i; j < index - 1; j++)
+            {
+                studNumber[j] = studNumber[j + 1];
+            }
+            index--;
+            cout << "Student with ID number " << deleteID << " deleted successfully!" << endl;
+            found = true;
+            break;
+        }
+    }
+
+    if (!found)
+    {
+        cout << "Student with ID number " << deleteID << " not found." << endl;
+    }       
+
+    return;
+}
+
+void exitProgram()
+{
+    cout << "\nThank you for using the Student Management System. Goodbye!" << endl;
+}
+
