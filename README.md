@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project is a simple Employee Salary Management System developed using C++.
+This project is a project named Employee Salary Management System developed using C++.
 
 ## Features
 
